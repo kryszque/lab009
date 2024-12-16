@@ -6,7 +6,7 @@
 Zwraca 0 - wsteczne podstawienie zakonczone sukcesem
 Zwraca 1 - błąd dzielenia przez 0 (element na diagonali = 0)
 Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy*/
-int backsubst(Matrix x, Matrix mat, Matrix b) {
+int backsubst(Matrix *x, Matrix *mat, Matrix *b) {
     int i, j;
 
     // Sprawdzenie poprawności rozmiarów macierzy
@@ -25,7 +25,7 @@ int backsubst(Matrix x, Matrix mat, Matrix b) {
         x->data[i][0] = b->data[i][0];
 
         for (j = i + 1; j < mat->r; j++) {
-            x->data[i][0] -= mat->data[i][j] x->data[j][0];
+            x->data[i][0] -= mat->data[i][j] * x->data[j][0];
         }
 
         // Sprawdzenie czy element diagonalny jest bliski zeru
